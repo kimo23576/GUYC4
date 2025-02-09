@@ -3,66 +3,140 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>متابعة الطلب - النظام الذكي لتسجيل الأضرار</title>
+  <title>متابعة الطلب - النظام الذكي للمطالبات</title>
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Cairo -->
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
-    body { background: #F5F0E1; color: #F1C40F; line-height: 1.6; }
-    header { background: linear-gradient(135deg, #1B2631, #212F3D); padding: 15px; position: relative; }
-    header img { max-height: 80px; vertical-align: middle; }
-    nav { display: inline-block; margin-left: 20px; }
-    nav a { color: #F1C40F; text-decoration: none; margin: 0 10px; font-size: 1.1rem; }
-    .reg-icon { position: absolute; top: 15px; right: 20px; font-size: 1.8rem; }
-    .reg-icon a { color: #F1C40F; text-decoration: none; }
-    .container { width: 90%; max-width: 1200px; margin: 20px auto; background: #2C3E50; padding: 20px; border-radius: 10px; }
-    h1, h2 { margin-bottom: 15px; }
-    .track-section { margin: 20px 0; }
-    .track-section label { display: block; margin-bottom: 5px; }
-    .track-section input {
+    :root {
+      --primary-color: #1B2631;
+      --secondary-color: #212F3D;
+      --accent-color: #F1C40F;
+      --bg-color: #F5F0E1;
+      --text-color: #F1C40F;
+      --nav-bg: var(--primary-color);
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Cairo', sans-serif;
+    }
+    body {
+      background: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      padding-bottom: 50px;
+    }
+    /* شريط التنقل */
+    nav {
+      background: var(--nav-bg);
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+    }
+    nav ul li {
+      margin: 0 10px;
+    }
+    nav ul li a {
+      color: var(--accent-color);
+      text-decoration: none;
+      font-size: 1.1rem;
+      padding: 5px 10px;
+    }
+    nav ul li a:hover {
+      background: var(--accent-color);
+      color: var(--nav-bg);
+      border-radius: 5px;
+    }
+    .register-icon {
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: var(--accent-color);
+    }
+    /* المحتوى */
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 20px auto;
+      background: var(--secondary-color);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    }
+    h1, h2 {
+      color: var(--accent-color);
+      margin-bottom: 15px;
+    }
+    .input-group {
+      margin-bottom: 15px;
+    }
+    .input-group label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    input {
       width: 100%;
       padding: 10px;
       border-radius: 5px;
       border: 1px solid #ccc;
-      margin-bottom: 10px;
+      font-size: 1rem;
     }
-    .track-section button {
-      background: #1B2631;
-      color: #F1C40F;
-      border: none;
+    button {
       padding: 10px 20px;
+      border: none;
       border-radius: 5px;
+      background: var(--primary-color);
+      color: var(--accent-color);
       cursor: pointer;
+      transition: background 0.3s ease;
+      margin: 5px 0;
     }
-    #fileStatusResult { margin-top: 15px; font-weight: bold; }
-    footer { background: #1B2631; color: #fff; text-align: center; padding: 15px; margin-top: 20px; border-top: 2px solid #F1C40F; }
+    button:hover {
+      background: var(--accent-color);
+      color: var(--primary-color);
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: var(--primary-color);
+      color: #fff;
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
-  <!-- الهيدر مع قائمة التنقل -->
-  <header>
-    <img src="https://guyc-ye.com/wp-content/uploads/2024/05/GUYC-Log33o-copy.png" alt="شعار الاتحاد">
-    <nav>
-      <a href="index.html">الرئيسية</a>
-      <a href="manage.html">إدارة الملفات</a>
-      <a href="track.html">متابعة الطلب</a>
-      <a href="auth.html">تسجيل الدخول</a>
-    </nav>
-    <div class="reg-icon">
-      <a href="auth.html" title="تسجيل"><i class="fas fa-user-plus"></i></a>
+  <!-- شريط التنقل -->
+  <nav>
+    <ul>
+      <li><a href="index.html">الرئيسية</a></li>
+      <li><a href="file_management.html">إدارة الملفات</a></li>
+      <li><a href="follow_up.html">متابعة الطلب</a></li>
+    </ul>
+    <div class="register-icon" id="openAuthModal" title="تسجيل الدخول / التسجيل">
+      <i class="fas fa-user"></i>
     </div>
-  </header>
+  </nav>
 
+  <!-- المحتوى الرئيسي لمتابعة الطلب -->
   <div class="container">
     <h1>متابعة الطلب</h1>
-    <p>أدخل رقم ملف المطالبة الخاص بك لمتابعة حالته.</p>
-    <div class="track-section">
-      <form onsubmit="trackFile(event)">
-        <label for="fileNumber">رقم الملف:</label>
-        <input type="text" id="fileNumber" placeholder="أدخل رقم الملف">
-        <button type="submit">متابعة</button>
-      </form>
-      <div id="fileStatusResult"></div>
+    <p>أدخل رقم الملف لمتابعة حالة ملف المطالبة الخاصة بك ومعرفة المستجدات.</p>
+    <div class="input-group">
+      <label>رقم الملف:</label>
+      <input type="text" id="followUpFileNumber" placeholder="أدخل رقم الملف">
+    </div>
+    <button id="followUpBtn">متابعة الملف</button>
+    <div id="followUpResult" style="display: none; margin-top: 20px;">
+      <h2>نتائج المتابعة</h2>
+      <p>حالة الملف: <span id="fileStatusResult">قيد الدراسة</span></p>
+      <p>ملاحظات: <span id="fileNotesResult">لم يتم تحديث الملف بعد.</span></p>
     </div>
   </div>
 
@@ -70,18 +144,19 @@
     <p>© 2025 الاتحاد العام للمقاولين اليمنيين - جميع الحقوق محفوظة</p>
   </footer>
 
+  <!-- كود جافا سكريبت لصفحة المتابعة -->
   <script>
-    function trackFile(e) {
-      e.preventDefault();
-      const fileNumber = document.getElementById("fileNumber").value;
-      const resultDiv = document.getElementById("fileStatusResult");
+    document.getElementById("followUpBtn").onclick = function() {
+      var fileNumber = document.getElementById("followUpFileNumber").value;
       if (!fileNumber) {
-        resultDiv.textContent = "يرجى إدخال رقم الملف.";
+        alert("يرجى إدخال رقم الملف.");
         return;
       }
-      // منطق تتبع الطلب (يمكن تعديله لاحقاً)
-      resultDiv.textContent = "ملف " + fileNumber + " حالته: قيد الدراسة. سيتم التواصل معك قريباً.";
-    }
+      // في نظام حقيقي، يتم جلب بيانات الملف من الخادم؛ هنا نستخدم بيانات ثابتة كمحاكاة:
+      document.getElementById("fileStatusResult").textContent = "قيد الدراسة";
+      document.getElementById("fileNotesResult").textContent = "لم يتم تحديث الملف بعد.";
+      document.getElementById("followUpResult").style.display = "block";
+    };
   </script>
 </body>
 </html>
