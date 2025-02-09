@@ -17,15 +17,29 @@
     .reg-icon a { color: #F1C40F; text-decoration: none; }
     .container { width: 90%; max-width: 1200px; margin: 20px auto; background: #2C3E50; padding: 20px; border-radius: 10px; }
     h1, h2 { margin-bottom: 15px; }
-    .track-form { margin: 20px 0; }
-    .track-form label { display: block; margin-bottom: 5px; }
-    .track-form input { width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc; }
-    .track-form button { background: #1B2631; color: #F1C40F; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; }
-    footer { background: #1B2631; color: #fff; text-align: center; padding: 15px; margin-top: 20px; }
+    .track-section { margin: 20px 0; }
+    .track-section label { display: block; margin-bottom: 5px; }
+    .track-section input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+    }
+    .track-section button {
+      background: #1B2631;
+      color: #F1C40F;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #fileStatusResult { margin-top: 15px; font-weight: bold; }
+    footer { background: #1B2631; color: #fff; text-align: center; padding: 15px; margin-top: 20px; border-top: 2px solid #F1C40F; }
   </style>
 </head>
 <body>
-  <!-- الهيدر مع شريط التنقل وأيقونة التسجيل -->
+  <!-- الهيدر مع قائمة التنقل -->
   <header>
     <img src="https://guyc-ye.com/wp-content/uploads/2024/05/GUYC-Log33o-copy.png" alt="شعار الاتحاد">
     <nav>
@@ -41,14 +55,14 @@
 
   <div class="container">
     <h1>متابعة الطلب</h1>
-    <p>أدخل رقم ملف المطالبة الخاص بك لمتابعة حالة الطلب.</p>
-    <div class="track-form">
+    <p>أدخل رقم ملف المطالبة الخاص بك لمتابعة حالته.</p>
+    <div class="track-section">
       <form onsubmit="trackFile(event)">
         <label for="fileNumber">رقم الملف:</label>
         <input type="text" id="fileNumber" placeholder="أدخل رقم الملف">
         <button type="submit">متابعة</button>
       </form>
-      <div id="fileStatusResult" style="margin-top:15px; font-weight:bold;"></div>
+      <div id="fileStatusResult"></div>
     </div>
   </div>
 
@@ -65,7 +79,7 @@
         resultDiv.textContent = "يرجى إدخال رقم الملف.";
         return;
       }
-      // يمكنك هنا إضافة منطق التتبع الحقيقي بناءً على رقم الملف
+      // منطق تتبع الطلب (يمكن تعديله لاحقاً)
       resultDiv.textContent = "ملف " + fileNumber + " حالته: قيد الدراسة. سيتم التواصل معك قريباً.";
     }
   </script>
