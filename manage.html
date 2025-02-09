@@ -9,7 +9,11 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
     body { background: #F5F0E1; color: #F1C40F; line-height: 1.6; }
-    header { background: linear-gradient(135deg, #1B2631, #212F3D); padding: 15px; position: relative; }
+    header {
+      background: linear-gradient(135deg, #1B2631, #212F3D);
+      padding: 15px;
+      position: relative;
+    }
     header img { max-height: 80px; vertical-align: middle; }
     nav { display: inline-block; margin-left: 20px; }
     nav a { color: #F1C40F; text-decoration: none; margin: 0 10px; font-size: 1.1rem; }
@@ -17,15 +21,35 @@
     .reg-icon a { color: #F1C40F; text-decoration: none; }
     .container { width: 90%; max-width: 1200px; margin: 20px auto; background: #2C3E50; padding: 20px; border-radius: 10px; }
     h1, h2 { margin-bottom: 15px; }
-    .manage-form { margin: 20px 0; }
-    .manage-form label { display: block; margin-bottom: 5px; }
-    .manage-form input, .manage-form textarea { width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc; }
-    .manage-form button { background: #1B2631; color: #F1C40F; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; }
-    footer { background: #1B2631; color: #fff; text-align: center; padding: 15px; margin-top: 20px; }
+    .manage-section { margin: 20px 0; }
+    .manage-section label { display: block; margin-bottom: 5px; }
+    .manage-section input, .manage-section textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+    }
+    .manage-section button {
+      background: #1B2631;
+      color: #F1C40F;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    footer {
+      background: #1B2631;
+      color: #fff;
+      text-align: center;
+      padding: 15px;
+      margin-top: 20px;
+      border-top: 2px solid #F1C40F;
+    }
   </style>
 </head>
 <body>
-  <!-- الهيدر مع شريط التنقل وأيقونة التسجيل -->
+  <!-- نفس شريط التنقل من الصفحة الرئيسية -->
   <header>
     <img src="https://guyc-ye.com/wp-content/uploads/2024/05/GUYC-Log33o-copy.png" alt="شعار الاتحاد">
     <nav>
@@ -41,15 +65,14 @@
 
   <div class="container">
     <h1>إدارة ملفات المطالبات</h1>
-    <p>من خلال هذه الصفحة يمكنك إدارة ملفات المطالبات الخاصة بك وتحديثها وإرسال التحديثات إلى البريد الإلكتروني.</p>
-    <div class="manage-form">
+    <p>من هنا يمكنك مراجعة وإدارة ملفات المطالبات الخاصة بك، إضافة تحديثات، وتصدير التقارير بصيغة PDF أو مشاركتها إلكترونيًا.</p>
+    <div class="manage-section">
       <h2>تحديث ملف مطالبة</h2>
-      <!-- نموذج بسيط لإرسال تحديثات الملف عبر البريد الإلكتروني -->
       <form action="mailto:info@guyc-ye.com" method="post" enctype="text/plain">
-        <label for="manageFileNumber">رقم الملف:</label>
-        <input type="text" id="manageFileNumber" name="manageFileNumber" placeholder="أدخل رقم الملف">
-        <label for="updateDetails">تفاصيل التحديث:</label>
-        <textarea id="updateDetails" name="updateDetails" rows="5" placeholder="أدخل تفاصيل التحديث"></textarea>
+        <label for="manageFileNumber2">رقم الملف:</label>
+        <input type="text" id="manageFileNumber2" name="manageFileNumber2" placeholder="أدخل رقم الملف">
+        <label for="updateDetails2">تفاصيل التحديث:</label>
+        <textarea id="updateDetails2" name="updateDetails2" rows="5" placeholder="أدخل تفاصيل التحديث"></textarea>
         <button type="submit">إرسال التحديث</button>
       </form>
     </div>
