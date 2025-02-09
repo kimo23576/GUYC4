@@ -3,139 +3,297 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>تسجيل الدخول / التسجيل - النظام الذكي</title>
+  <title>النظام الذكي للمطالبات - الرئيسية</title>
+  <!-- Font Awesome للأيقونات -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Cairo -->
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
-    body { background: #F5F0E1; color: #F1C40F; line-height: 1.6; }
-    header { background: linear-gradient(135deg, #1B2631, #212F3D); padding: 15px; position: relative; }
-    header img { max-height: 80px; vertical-align: middle; }
-    nav { display: inline-block; margin-left: 20px; }
-    nav a { color: #F1C40F; text-decoration: none; margin: 0 10px; font-size: 1.1rem; }
-    .reg-icon { position: absolute; top: 15px; right: 20px; font-size: 1.8rem; }
-    .reg-icon a { color: #F1C40F; text-decoration: none; }
-    .container { width: 90%; max-width: 600px; margin: 20px auto; background: #2C3E50; padding: 20px; border-radius: 10px; }
-    h1 { text-align: center; margin-bottom: 20px; }
-    form { margin-bottom: 20px; }
-    .input-group { margin-bottom: 15px; }
-    .input-group label { display: block; margin-bottom: 5px; }
-    .input-group input { width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc; }
-    button { width: 100%; padding: 10px; border: none; border-radius: 5px; background: #1B2631; color: #F1C40F; cursor: pointer; }
-    .toggle-link { text-align: center; cursor: pointer; margin-top: 10px; }
-    footer { background: #1B2631; color: #fff; text-align: center; padding: 15px; margin-top: 20px; }
+    /* المتغيرات الأساسية */
+    :root {
+      --primary-color: #1B2631;
+      --secondary-color: #212F3D;
+      --accent-color: #F1C40F;
+      --bg-color: #F5F0E1;
+      --text-color: #F1C40F;
+      --nav-bg: var(--primary-color);
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Cairo', sans-serif;
+    }
+    body {
+      background: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      padding-bottom: 50px;
+    }
+    /* شريط التنقل */
+    nav {
+      background: var(--nav-bg);
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+    }
+    nav ul li {
+      margin: 0 10px;
+    }
+    nav ul li a {
+      color: var(--accent-color);
+      text-decoration: none;
+      font-size: 1.1rem;
+      padding: 5px 10px;
+    }
+    nav ul li a:hover {
+      background: var(--accent-color);
+      color: var(--nav-bg);
+      border-radius: 5px;
+    }
+    .register-icon {
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: var(--accent-color);
+    }
+    /* المحتوى الرئيسي */
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 20px auto;
+      background: var(--secondary-color);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    }
+    h1, h2 {
+      color: var(--accent-color);
+      margin-bottom: 15px;
+    }
+    .input-group {
+      margin-bottom: 15px;
+    }
+    .input-group label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      margin-bottom: 5px;
+    }
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background: var(--primary-color);
+      color: var(--accent-color);
+      cursor: pointer;
+      transition: background 0.3s ease;
+      margin: 5px 0;
+    }
+    button:hover {
+      background: var(--accent-color);
+      color: var(--primary-color);
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: var(--primary-color);
+      color: #fff;
+      margin-top: 20px;
+    }
+    /* نمط النوافذ المنبثقة (Modal) */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 100;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-content {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+      position: relative;
+    }
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    /* تبويبات تسجيل الدخول والتسجيل داخل النافذة */
+    #authTabs {
+      margin-bottom: 15px;
+    }
+    #authTabs button {
+      padding: 8px 16px;
+      margin: 0 5px;
+      border: none;
+      border-radius: 5px;
+      background: var(--secondary-color);
+      color: var(--accent-color);
+      cursor: pointer;
+    }
+    #authTabs button:hover {
+      background: var(--accent-color);
+      color: var(--secondary-color);
+    }
   </style>
 </head>
 <body>
-  <!-- الهيدر مع قائمة التنقل -->
-  <header>
-    <img src="https://guyc-ye.com/wp-content/uploads/2024/05/GUYC-Log33o-copy.png" alt="شعار الاتحاد">
-    <nav>
-      <a href="index.html">الرئيسية</a>
-      <a href="manage.html">إدارة الملفات</a>
-      <a href="track.html">متابعة الطلب</a>
-    </nav>
-    <div class="reg-icon">
-      <a href="auth.html" title="تسجيل"><i class="fas fa-user-plus"></i></a>
+  <!-- شريط التنقل -->
+  <nav>
+    <ul>
+      <li><a href="index.html">الرئيسية</a></li>
+      <li><a href="file_management.html">إدارة الملفات</a></li>
+      <li><a href="follow_up.html">متابعة الطلب</a></li>
+    </ul>
+    <!-- أيقونة تسجيل الدخول/التسجيل -->
+    <div class="register-icon" id="openAuthModal" title="تسجيل الدخول / التسجيل">
+      <i class="fas fa-user"></i>
     </div>
-  </header>
+  </nav>
 
+  <!-- المحتوى الرئيسي -->
   <div class="container">
-    <h1 id="formTitle">تسجيل الدخول</h1>
-    <!-- نموذج تسجيل الدخول -->
-    <form id="loginForm">
+    <h1>مرحبًا بكم في النظام الذكي للمطالبات</h1>
+    <p>يتيح لك هذا النظام إعداد ومتابعة ملفات المطالبات وفق أفضل المعايير العالمية.</p>
+    <!-- نموذج لتسجيل مطالبة جديدة -->
+    <div class="section">
+      <h2>تسجيل ملف مطالبة جديد</h2>
       <div class="input-group">
-        <label>اسم المستخدم:</label>
-        <input type="text" id="loginUsername" placeholder="أدخل اسم المستخدم" required>
+        <label>اسم الشركة:</label>
+        <input type="text" id="companyName" placeholder="أدخل اسم الشركة">
       </div>
       <div class="input-group">
-        <label>كلمة المرور:</label>
-        <input type="password" id="loginPassword" placeholder="أدخل كلمة المرور" required>
+        <label>رقم الملف:</label>
+        <input type="text" id="claimFileNumber" placeholder="أدخل رقم الملف">
       </div>
-      <button type="submit">دخول</button>
-    </form>
-    <!-- نموذج التسجيل (يظهر عند التبديل) -->
-    <div id="registerSection" style="display: none;">
-      <form id="registerForm">
-        <div class="input-group">
-          <label>اسم المستخدم:</label>
-          <input type="text" id="regUsername" placeholder="أدخل اسم المستخدم" required>
-        </div>
-        <div class="input-group">
-          <label>البريد الإلكتروني:</label>
-          <input type="email" id="regEmail" placeholder="أدخل البريد الإلكتروني" required>
-        </div>
-        <div class="input-group">
-          <label>كلمة المرور:</label>
-          <input type="password" id="regPassword" placeholder="أدخل كلمة المرور" required>
-        </div>
-        <div class="input-group">
-          <label>تأكيد كلمة المرور:</label>
-          <input type="password" id="regConfirmPassword" placeholder="أعد إدخال كلمة المرور" required>
-        </div>
-        <button type="submit">تسجيل</button>
-      </form>
+      <button id="submitClaimBtn">تسجيل الملف وإرساله</button>
     </div>
-    <div class="toggle-link" id="toggleForm">ليس لديك حساب؟ سجل الآن</div>
   </div>
 
+  <!-- الفوتر -->
   <footer>
     <p>© 2025 الاتحاد العام للمقاولين اليمنيين - جميع الحقوق محفوظة</p>
   </footer>
 
+  <!-- نافذة تسجيل الدخول / التسجيل -->
+  <div id="authModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeAuthModal">&times;</span>
+      <h2>تسجيل الدخول / التسجيل</h2>
+      <div id="authTabs">
+        <button id="loginTab">دخول</button>
+        <button id="registerTab">تسجيل</button>
+      </div>
+      <!-- نموذج تسجيل الدخول -->
+      <div id="loginForm" style="display: block;">
+        <div class="input-group">
+          <label>اسم المستخدم:</label>
+          <input type="text" id="loginUsername" placeholder="أدخل اسم المستخدم">
+        </div>
+        <div class="input-group">
+          <label>كلمة المرور:</label>
+          <input type="password" id="loginPassword" placeholder="أدخل كلمة المرور">
+        </div>
+        <button id="loginBtn">دخول</button>
+      </div>
+      <!-- نموذج التسجيل -->
+      <div id="registerForm" style="display: none;">
+        <div class="input-group">
+          <label>اسم المستخدم:</label>
+          <input type="text" id="regUsername" placeholder="أدخل اسم المستخدم">
+        </div>
+        <div class="input-group">
+          <label>البريد الإلكتروني:</label>
+          <input type="email" id="regEmail" placeholder="أدخل البريد الإلكتروني">
+        </div>
+        <div class="input-group">
+          <label>كلمة المرور:</label>
+          <input type="password" id="regPassword" placeholder="أدخل كلمة المرور">
+        </div>
+        <div class="input-group">
+          <label>تأكيد كلمة المرور:</label>
+          <input type="password" id="regConfirmPassword" placeholder="أعد إدخال كلمة المرور">
+        </div>
+        <button id="registerBtn">تسجيل</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- كود جافا سكريبت للتحكم في النوافذ ونظام المستخدم -->
   <script>
-    // تبديل بين نموذج تسجيل الدخول ونموذج التسجيل
-    const toggleLink = document.getElementById("toggleForm");
-    const formTitle = document.getElementById("formTitle");
+    // فتح وإغلاق نافذة المصادقة
+    const authModal = document.getElementById("authModal");
+    const openAuthModal = document.getElementById("openAuthModal");
+    const closeAuthModal = document.getElementById("closeAuthModal");
+    openAuthModal.onclick = () => { authModal.style.display = "flex"; };
+    closeAuthModal.onclick = () => { authModal.style.display = "none"; };
+    window.onclick = (e) => { if (e.target === authModal) authModal.style.display = "none"; };
+
+    // تبديل التبويبات
+    const loginTab = document.getElementById("loginTab");
+    const registerTab = document.getElementById("registerTab");
     const loginForm = document.getElementById("loginForm");
-    const registerSection = document.getElementById("registerSection");
+    const registerForm = document.getElementById("registerForm");
+    loginTab.onclick = () => { loginForm.style.display = "block"; registerForm.style.display = "none"; };
+    registerTab.onclick = () => { registerForm.style.display = "block"; loginForm.style.display = "none"; };
 
-    toggleLink.onclick = function() {
-      if (loginForm.style.display !== "none") {
-        loginForm.style.display = "none";
-        registerSection.style.display = "block";
-        formTitle.textContent = "تسجيل حساب جديد";
-        toggleLink.textContent = "لديك حساب؟ سجل الدخول";
-      } else {
-        loginForm.style.display = "block";
-        registerSection.style.display = "none";
-        formTitle.textContent = "تسجيل الدخول";
-        toggleLink.textContent = "ليس لديك حساب؟ سجل الآن";
-      }
-    };
-
-    // نظام تخزين بيانات المستخدمين باستخدام localStorage (لأغراض تجريبية)
+    // نظام المستخدمين (محاكاة باستخدام localStorage)
     let users = JSON.parse(localStorage.getItem("users")) || {};
 
-    document.getElementById("registerForm").onsubmit = function(e) {
-      e.preventDefault();
-      const username = document.getElementById("regUsername").value;
-      const email = document.getElementById("regEmail").value;
-      const password = document.getElementById("regPassword").value;
-      const confirmPassword = document.getElementById("regConfirmPassword").value;
-      if (password !== confirmPassword) {
-        alert("كلمتا المرور غير متطابقتين");
-        return;
-      }
+    document.getElementById("registerBtn").onclick = () => {
+      let username = document.getElementById("regUsername").value;
+      let email = document.getElementById("regEmail").value;
+      let password = document.getElementById("regPassword").value;
+      let confirmPassword = document.getElementById("regConfirmPassword").value;
+      if (password !== confirmPassword) { alert("كلمتا المرور غير متطابقتين"); return; }
       users[username] = { email, password };
       localStorage.setItem("users", JSON.stringify(users));
-      alert("تم التسجيل بنجاح! يمكنك الآن تسجيل الدخول.");
-      loginForm.style.display = "block";
-      registerSection.style.display = "none";
-      formTitle.textContent = "تسجيل الدخول";
-      toggleLink.textContent = "ليس لديك حساب؟ سجل الآن";
+      alert("تم التسجيل بنجاح!");
+      authModal.style.display = "none";
     };
 
-    document.getElementById("loginForm").onsubmit = function(e) {
-      e.preventDefault();
-      const username = document.getElementById("loginUsername").value;
-      const password = document.getElementById("loginPassword").value;
+    document.getElementById("loginBtn").onclick = () => {
+      let username = document.getElementById("loginUsername").value;
+      let password = document.getElementById("loginPassword").value;
       if (users[username] && users[username].password === password) {
         alert("تم تسجيل الدخول بنجاح!");
-        window.location.href = "index.html";
+        authModal.style.display = "none";
       } else {
         alert("خطأ في اسم المستخدم أو كلمة المرور.");
       }
+    };
+
+    // محاكاة إرسال ملف المطالبة عبر mailto
+    document.getElementById("submitClaimBtn").onclick = () => {
+      let companyName = document.getElementById("companyName").value;
+      let fileNumber = document.getElementById("claimFileNumber").value;
+      if (!companyName || !fileNumber) {
+        alert("يرجى ملء جميع الحقول المطلوبة.");
+        return;
+      }
+      window.location.href = "mailto:info@guyc-ye.com?subject=ملف%20المطالبة%20رقم%20" + encodeURIComponent(fileNumber) + "&body=اسم%20الشركة:%20" + encodeURIComponent(companyName);
     };
   </script>
 </body>
