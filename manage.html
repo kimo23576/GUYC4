@@ -3,83 +3,190 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>إدارة الملفات - النظام الذكي لتسجيل الأضرار</title>
+  <title>إدارة الملفات - النظام الذكي للمطالبات</title>
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Cairo -->
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
-    body { background: #F5F0E1; color: #F1C40F; line-height: 1.6; }
-    header {
-      background: linear-gradient(135deg, #1B2631, #212F3D);
-      padding: 15px;
-      position: relative;
+    :root {
+      --primary-color: #1B2631;
+      --secondary-color: #212F3D;
+      --accent-color: #F1C40F;
+      --bg-color: #F5F0E1;
+      --text-color: #F1C40F;
+      --nav-bg: var(--primary-color);
     }
-    header img { max-height: 80px; vertical-align: middle; }
-    nav { display: inline-block; margin-left: 20px; }
-    nav a { color: #F1C40F; text-decoration: none; margin: 0 10px; font-size: 1.1rem; }
-    .reg-icon { position: absolute; top: 15px; right: 20px; font-size: 1.8rem; }
-    .reg-icon a { color: #F1C40F; text-decoration: none; }
-    .container { width: 90%; max-width: 1200px; margin: 20px auto; background: #2C3E50; padding: 20px; border-radius: 10px; }
-    h1, h2 { margin-bottom: 15px; }
-    .manage-section { margin: 20px 0; }
-    .manage-section label { display: block; margin-bottom: 5px; }
-    .manage-section input, .manage-section textarea {
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Cairo', sans-serif;
+    }
+    body {
+      background: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      padding-bottom: 50px;
+    }
+    /* شريط التنقل */
+    nav {
+      background: var(--nav-bg);
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+    }
+    nav ul li {
+      margin: 0 10px;
+    }
+    nav ul li a {
+      color: var(--accent-color);
+      text-decoration: none;
+      font-size: 1.1rem;
+      padding: 5px 10px;
+    }
+    nav ul li a:hover {
+      background: var(--accent-color);
+      color: var(--nav-bg);
+      border-radius: 5px;
+    }
+    .register-icon {
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: var(--accent-color);
+    }
+    /* المحتوى */
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 20px auto;
+      background: var(--secondary-color);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    }
+    h1, h2 {
+      color: var(--accent-color);
+      margin-bottom: 15px;
+    }
+    .input-group {
+      margin-bottom: 15px;
+    }
+    .input-group label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    input, textarea {
       width: 100%;
       padding: 10px;
       border-radius: 5px;
       border: 1px solid #ccc;
-      margin-bottom: 10px;
+      font-size: 1rem;
+      margin-bottom: 5px;
     }
-    .manage-section button {
-      background: #1B2631;
-      color: #F1C40F;
-      border: none;
+    button {
       padding: 10px 20px;
+      border: none;
       border-radius: 5px;
+      background: var(--primary-color);
+      color: var(--accent-color);
       cursor: pointer;
+      transition: background 0.3s ease;
+      margin: 5px 0;
+    }
+    button:hover {
+      background: var(--accent-color);
+      color: var(--primary-color);
     }
     footer {
-      background: #1B2631;
-      color: #fff;
       text-align: center;
-      padding: 15px;
+      padding: 20px;
+      background: var(--primary-color);
+      color: #fff;
       margin-top: 20px;
-      border-top: 2px solid #F1C40F;
     }
   </style>
 </head>
 <body>
-  <!-- نفس شريط التنقل من الصفحة الرئيسية -->
-  <header>
-    <img src="https://guyc-ye.com/wp-content/uploads/2024/05/GUYC-Log33o-copy.png" alt="شعار الاتحاد">
-    <nav>
-      <a href="index.html">الرئيسية</a>
-      <a href="manage.html">إدارة الملفات</a>
-      <a href="track.html">متابعة الطلب</a>
-      <a href="auth.html">تسجيل الدخول</a>
-    </nav>
-    <div class="reg-icon">
-      <a href="auth.html" title="تسجيل"><i class="fas fa-user-plus"></i></a>
+  <!-- شريط التنقل -->
+  <nav>
+    <ul>
+      <li><a href="index.html">الرئيسية</a></li>
+      <li><a href="file_management.html">إدارة الملفات</a></li>
+      <li><a href="follow_up.html">متابعة الطلب</a></li>
+    </ul>
+    <div class="register-icon" id="openAuthModal" title="تسجيل الدخول / التسجيل">
+      <i class="fas fa-user"></i>
     </div>
-  </header>
+  </nav>
 
+  <!-- المحتوى الرئيسي لإدارة الملفات -->
   <div class="container">
     <h1>إدارة ملفات المطالبات</h1>
-    <p>من هنا يمكنك مراجعة وإدارة ملفات المطالبات الخاصة بك، إضافة تحديثات، وتصدير التقارير بصيغة PDF أو مشاركتها إلكترونيًا.</p>
-    <div class="manage-section">
-      <h2>تحديث ملف مطالبة</h2>
-      <form action="mailto:info@guyc-ye.com" method="post" enctype="text/plain">
-        <label for="manageFileNumber2">رقم الملف:</label>
-        <input type="text" id="manageFileNumber2" name="manageFileNumber2" placeholder="أدخل رقم الملف">
-        <label for="updateDetails2">تفاصيل التحديث:</label>
-        <textarea id="updateDetails2" name="updateDetails2" rows="5" placeholder="أدخل تفاصيل التحديث"></textarea>
-        <button type="submit">إرسال التحديث</button>
-      </form>
+    <p>يمكنك إدارة ومتابعة ملفات المطالبات الخاصة بك من خلال إدخال رقم الملف لعرض تفاصيله وتحديث حالته.</p>
+    <div class="input-group">
+      <label>أدخل رقم الملف:</label>
+      <input type="text" id="fileNumberInput" placeholder="رقم الملف">
+    </div>
+    <button id="viewFileBtn">عرض الملف</button>
+    
+    <!-- قسم تفاصيل الملف (سيظهر عند الضغط على "عرض الملف") -->
+    <div id="fileDetailsSection" style="display: none; margin-top: 20px;">
+      <h2>تفاصيل الملف</h2>
+      <div class="input-group">
+        <label>اسم الشركة:</label>
+        <input type="text" id="fmCompanyName" placeholder="اسم الشركة">
+      </div>
+      <div class="input-group">
+        <label>حالة الملف:</label>
+        <input type="text" id="fmFileStatus" placeholder="قيد الدراسة/مكتمل/مرفوض">
+      </div>
+      <div class="input-group">
+        <label>ملاحظات:</label>
+        <textarea id="fmNotes" rows="4" placeholder="أدخل ملاحظاتك هنا"></textarea>
+      </div>
+      <button id="updateFileBtn">تحديث الملف وإرسال التحديثات</button>
     </div>
   </div>
 
   <footer>
     <p>© 2025 الاتحاد العام للمقاولين اليمنيين - جميع الحقوق محفوظة</p>
   </footer>
+
+  <!-- كود جافا سكريبت لصفحة إدارة الملفات -->
+  <script>
+    document.getElementById("viewFileBtn").onclick = function() {
+      var fileNumber = document.getElementById("fileNumberInput").value;
+      if (!fileNumber) {
+        alert("يرجى إدخال رقم الملف.");
+        return;
+      }
+      // محاكاة تحميل بيانات الملف (في نظام حقيقي يتم جلب البيانات من الخادم)
+      document.getElementById("fmCompanyName").value = "شركة المثال";
+      document.getElementById("fmFileStatus").value = "قيد الدراسة";
+      document.getElementById("fmNotes").value = "لم يتم استكمال كافة المستندات.";
+      document.getElementById("fileDetailsSection").style.display = "block";
+    };
+
+    document.getElementById("updateFileBtn").onclick = function() {
+      var fileNumber = document.getElementById("fileNumberInput").value;
+      var companyName = document.getElementById("fmCompanyName").value;
+      var status = document.getElementById("fmFileStatus").value;
+      var notes = document.getElementById("fmNotes").value;
+      if (!fileNumber || !companyName || !status) {
+        alert("يرجى ملء جميع الحقول المطلوبة.");
+        return;
+      }
+      // في نظام حقيقي يتم تحديث الملف في قاعدة البيانات.
+      // هنا نقوم بمحاكاة إرسال تحديثات عبر mailto:
+      window.location.href = "mailto:info@guyc-ye.com?subject=تحديث%20ملف%20المطالبة%20رقم%20" + encodeURIComponent(fileNumber) + "&body=اسم%20الشركة:%20" + encodeURIComponent(companyName) + "%0Aالحالة:%20" + encodeURIComponent(status) + "%0Aالملاحظات:%20" + encodeURIComponent(notes);
+      alert("تم إرسال التحديثات.");
+    };
+  </script>
 </body>
 </html>
