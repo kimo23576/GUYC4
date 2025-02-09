@@ -27,7 +27,7 @@
   </style>
 </head>
 <body>
-  <!-- الهيدر مع شريط التنقل وأيقونة التسجيل -->
+  <!-- الهيدر مع قائمة التنقل -->
   <header>
     <img src="https://guyc-ye.com/wp-content/uploads/2024/05/GUYC-Log33o-copy.png" alt="شعار الاتحاد">
     <nav>
@@ -55,7 +55,7 @@
       <button type="submit">دخول</button>
     </form>
     <!-- نموذج التسجيل (يظهر عند التبديل) -->
-    <div id="registerSection" style="display:none;">
+    <div id="registerSection" style="display: none;">
       <form id="registerForm">
         <div class="input-group">
           <label>اسم المستخدم:</label>
@@ -104,7 +104,7 @@
       }
     };
 
-    // نظام بسيط لتخزين بيانات المستخدمين باستخدام localStorage (لأغراض تجريبية فقط)
+    // نظام تخزين بيانات المستخدمين باستخدام localStorage (لأغراض تجريبية)
     let users = JSON.parse(localStorage.getItem("users")) || {};
 
     document.getElementById("registerForm").onsubmit = function(e) {
@@ -120,7 +120,6 @@
       users[username] = { email, password };
       localStorage.setItem("users", JSON.stringify(users));
       alert("تم التسجيل بنجاح! يمكنك الآن تسجيل الدخول.");
-      // التبديل تلقائياً إلى نموذج تسجيل الدخول
       loginForm.style.display = "block";
       registerSection.style.display = "none";
       formTitle.textContent = "تسجيل الدخول";
