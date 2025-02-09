@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>متابعة الطلب - النظام الذكي لتسجيل الأضرار</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
+    body { background: #F5F0E1; color: #F1C40F; line-height: 1.6; }
+    header { background: linear-gradient(135deg, #1B2631, #212F3D); padding: 15px; position: relative; }
+    header img { max-height: 80px; vertical-align: middle; }
+    nav { display: inline-block; margin-left: 20px; }
+    nav a { color: #F1C40F; text-decoration: none; margin: 0 10px; font-size: 1.1rem; }
+    .reg-icon { position: absolute; top: 15px; right: 20px; font-size: 1.8rem; }
+    .reg-icon a { color: #F1C40F; text-decoration: none; }
+    .container { width: 90%; max-width: 1200px; margin: 20px auto; background: #2C3E50; padding: 20px; border-radius: 10px; }
+    h1, h2 { margin-bottom: 15px; }
+    .track-form { margin: 20px 0; }
+    .track-form label { display: block; margin-bottom: 5px; }
+    .track-form input { width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc; }
+    .track-form button { background: #1B2631; color: #F1C40F; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; }
+    footer { background: #1B2631; color: #fff; text-align: center; padding: 15px; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <!-- الهيدر مع شريط التنقل وأيقونة التسجيل -->
+  <header>
+    <img src="https://guyc-ye.com/wp-content/uploads/2024/05/GUYC-Log33o-copy.png" alt="شعار الاتحاد">
+    <nav>
+      <a href="index.html">الرئيسية</a>
+      <a href="manage.html">إدارة الملفات</a>
+      <a href="track.html">متابعة الطلب</a>
+      <a href="auth.html">تسجيل الدخول</a>
+    </nav>
+    <div class="reg-icon">
+      <a href="auth.html" title="تسجيل"><i class="fas fa-user-plus"></i></a>
+    </div>
+  </header>
+
+  <div class="container">
+    <h1>متابعة الطلب</h1>
+    <p>أدخل رقم ملف المطالبة الخاص بك لمتابعة حالة الطلب.</p>
+    <div class="track-form">
+      <form onsubmit="trackFile(event)">
+        <label for="fileNumber">رقم الملف:</label>
+        <input type="text" id="fileNumber" placeholder="أدخل رقم الملف">
+        <button type="submit">متابعة</button>
+      </form>
+      <div id="fileStatusResult" style="margin-top:15px; font-weight:bold;"></div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 الاتحاد العام للمقاولين اليمنيين - جميع الحقوق محفوظة</p>
+  </footer>
+
+  <script>
+    function trackFile(e) {
+      e.preventDefault();
+      const fileNumber = document.getElementById("fileNumber").value;
+      const resultDiv = document.getElementById("fileStatusResult");
+      if (!fileNumber) {
+        resultDiv.textContent = "يرجى إدخال رقم الملف.";
+        return;
+      }
+      // يمكنك هنا إضافة منطق التتبع الحقيقي بناءً على رقم الملف
+      resultDiv.textContent = "ملف " + fileNumber + " حالته: قيد الدراسة. سيتم التواصل معك قريباً.";
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الرئيسية - الإستمارة الذكية لتسجيل الأضرار</title>
+  <!-- Font Awesome للأيقونات -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- خط "Cairo" من Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* تنسيقات عامة */
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
+    body { background: #F5F0E1; color: #F1C40F; line-height: 1.6; }
+    header { background: linear-gradient(135deg, #1B2631, #212F3D); padding: 15px; position: relative; }
+    header img { max-height: 80px; vertical-align: middle; }
+    nav { display: inline-block; margin-left: 20px; }
+    nav a { color: #F1C40F; text-decoration: none; margin: 0 10px; font-size: 1.1rem; }
+    .reg-icon { position: absolute; top: 15px; right: 20px; font-size: 1.8rem; }
+    .reg-icon a { color: #F1C40F; text-decoration: none; }
+    .container { width: 90%; max-width: 1200px; margin: 20px auto; background: #2C3E50; padding: 20px; border-radius: 10px; }
+    h1, h2 { margin-bottom: 15px; }
+    .claim-form { margin: 20px 0; }
+    .claim-form label { display: block; margin-bottom: 5px; }
+    .claim-form input, .claim-form textarea { width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc; }
+    .claim-form button { background: #1B2631; color: #F1C40F; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; }
+    footer { background: #1B2631; color: #fff; text-align: center; padding: 15px; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <!-- الهيدر مع شريط التنقل وأيقونة التسجيل -->
+  <header>
+    <img src="https://guyc-ye.com/wp-content/uploads/2024/05/GUYC-Log33o-copy.png" alt="شعار الاتحاد">
+    <nav>
+      <a href="index.html">الرئيسية</a>
+      <a href="manage.html">إدارة الملفات</a>
+      <a href="track.html">متابعة الطلب</a>
+      <a href="auth.html">تسجيل الدخول</a>
+    </nav>
+    <!-- أيقونة تسجيل/إنشاء حساب في أعلى اليمين -->
+    <div class="reg-icon">
+      <a href="auth.html" title="تسجيل"><i class="fas fa-user-plus"></i></a>
+    </div>
+  </header>
+
+  <div class="container">
+    <h1>مرحباً بكم في النظام الذكي لتسجيل الأضرار</h1>
+    <p>استخدم هذا النظام لإعداد ملف مطالبة متكامل. يرجى تسجيل الدخول أو إنشاء حساب لبدء العملية.</p>
+    <div class="claim-form">
+      <h2>تسجيل ملف مطالبة جديد</h2>
+      <!-- نموذج بسيط لإرسال الملف عبر البريد الإلكتروني باستخدام mailto -->
+      <form action="mailto:info@guyc-ye.com" method="post" enctype="text/plain">
+        <label for="companyName">اسم الشركة:</label>
+        <input type="text" id="companyName" name="companyName" placeholder="أدخل اسم الشركة">
+        <label for="claimFileNumber">رقم الملف:</label>
+        <input type="text" id="claimFileNumber" name="claimFileNumber" placeholder="أدخل رقم الملف">
+        <label for="claimDetails">تفاصيل المطالبة:</label>
+        <textarea id="claimDetails" name="claimDetails" rows="5" placeholder="أدخل تفاصيل المطالبة"></textarea>
+        <button type="submit">إرسال الملف</button>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 الاتحاد العام للمقاولين اليمنيين - جميع الحقوق محفوظة</p>
+  </footer>
+</body>
+</html>
